@@ -1,14 +1,18 @@
-const http = require('http');
+ import express from 'express'
+ import deneme  from './deneme.js'
 
-const port = 3001;
-const hostname = '127.0.0.1'
+const app = express();
+const port = 3001
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 201;
-    res.write("<h1>HI</h1>")
-    res.end();
+app.use(deneme);
+
+app.get('/', (req, res) => {
+  res.send('Home!')
+})
+app.get('/about',(req, res) => {
+  res.send('About!')
 })
 
-server.listen(port,hostname, () => {
-    console.log(`bu server ${port} portunda calisiyor`)
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
